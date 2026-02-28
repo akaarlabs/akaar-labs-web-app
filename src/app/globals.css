@@ -1,30 +1,115 @@
 @import "tailwindcss";
 
 :root {
+  --primary: #0f172a;
+  --primary-foreground: #f8fafc;
+  --secondary: #1e293b;
+  --secondary-foreground: #e2e8f0;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+  --accent-hover: #1d4ed8;
+  --dark: #0f172a;
+  --dark-foreground: #f8fafc;
+  --light: #f8fafc;
+  --light-foreground: #0f172a;
+  --muted: #64748b;
+  --muted-foreground: #94a3b8;
+  --border: #e2e8f0;
+  --border-muted: #cbd5e1;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-dark: var(--dark);
+  --color-dark-foreground: var(--dark-foreground);
+  --color-light: var(--light);
+  --color-light-foreground: var(--light-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-muted: var(--border-muted);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans:
-    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono:
-    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
-    monospace;
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-hero: 3.5rem;
+  --text-hero-sm: 2.5rem;
+  --text-hero-lg: 4.5rem;
+  --text-hero-xl: 5rem;
+  --text-section: 2.25rem;
+  --text-section-sm: 1.875rem;
+  --text-card: 1.25rem;
+
+  --container-padding: 1.5rem;
+  --container-max: 1280px;
+
+  --animate-reveal-duration: 700ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--animate-reveal-duration) ease-out,
+    transform var(--animate-reveal-duration) ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--animate-reveal-duration) ease-out,
+    transform var(--animate-reveal-duration) ease-out;
+}
+
+.reveal-stagger.revealed > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.reveal-stagger.revealed > *:nth-child(2) {
+  transition-delay: 80ms;
+}
+.reveal-stagger.revealed > *:nth-child(3) {
+  transition-delay: 160ms;
+}
+.reveal-stagger.revealed > *:nth-child(4) {
+  transition-delay: 240ms;
+}
+.reveal-stagger.revealed > *:nth-child(5) {
+  transition-delay: 320ms;
+}
+.reveal-stagger.revealed > *:nth-child(6) {
+  transition-delay: 400ms;
+}
+
+.reveal-stagger.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
 }
